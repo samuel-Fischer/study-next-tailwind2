@@ -18,7 +18,7 @@ export function Header() {
                   <ItemMenu name="Comprar" />
                 </li>
                 <li>
-                  <Link href="/home">
+                  <Link href="/">
                     <Image src={Logo} alt="Logo" width={150} />
                   </Link>
                 </li>
