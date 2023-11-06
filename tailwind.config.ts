@@ -13,6 +13,7 @@ const config = {
       colors: {
         'primary-red': '#F3133C',
         'primary-gray': '#2D2D37',
+        'carro-card': '#F7F7F7',
       },
     },
   },
