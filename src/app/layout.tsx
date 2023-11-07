@@ -2,6 +2,7 @@ import { Header } from '../components/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Lato } from 'next/font/google'
+import ClienteProvider from '../contexts/cliente'
 
 const lato = Lato({ 
   subsets: ['latin'],
@@ -21,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={lato.className}>
+        <ClienteProvider>
         <Header />
         {children}
+        </ClienteProvider>
       </body>
     </html>
   )

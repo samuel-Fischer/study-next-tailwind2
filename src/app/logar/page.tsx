@@ -1,5 +1,36 @@
+'use client'
+
+
+import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
+import { ClienteContext } from '../../contexts/cliente'
+import { useRouter } from 'next/navigation'
+import { Router } from 'lucide-react'
 
 export default function Example() {
+
+  const { register, handleSubmit } = useForm()
+  const { mudaId, mudaNome } = useContext(ClienteContext)
+
+  const router = useRouter()
+
+
+  
+   async function VerificarLogin(data: any) {
+    const login = `email=${data.email}&password=${data.password}`
+    console.log(data)
+    const response = await fetch(`http://localhost:3004/clientes?${login}`)
+    const cliente = await response.json()
+    if (cliente.length == 0) {
+      alert("Email ou senha incorretos")
+    } else {
+      mudaId(cliente[0].id)
+      mudaNome(cliente[0].nome)
+      router.push('/')
+    }
+
+  }
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -15,7 +46,7 @@ export default function Example() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form onSubmit={handleSubmit(VerificarLogin)} className="space-y-6" action="#" method="POST">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email
@@ -23,10 +54,9 @@ export default function Example() {
               <div className="mt-2">
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
-                  required
+                  required {...register("email")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
                 />
               </div>
@@ -46,10 +76,9 @@ export default function Example() {
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
+                  required {...register("password")}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
                 />
               </div>
