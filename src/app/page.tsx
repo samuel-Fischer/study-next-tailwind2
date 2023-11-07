@@ -1,32 +1,51 @@
-"use client";
+'use client';
 import { CarroType } from "../types/CarroType";
-// import Pesquisa from "../components/Pesquisa";
+import Pesquisa from "../components/Pesquisa";
 import Carro from "../components/Carro";
+import { useEffect, useState } from "react";
 
-async function getCarros() {
-  const res = await fetch('http://localhost:3004/carros') 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
+
+
+export default function Home() {
+  const [carros, setCarros] = useState<{ carro: CarroType }[]>([]);
+
+
+  useEffect(() => {
+    async function getCarros() {
+      const response = await fetch("http://localhost:3004/carros");
+      const data = await response.json();
+      setCarros(data);
+    }
+    getCarros();
+  }, []);
+
+
+  function filtrarCarros(data: any) {
+    async function getCarros() {
+      const response = await fetch(
+        "http://localhost:3004/carros?marca_like=" + data.pesq
+      );
+      const dados = await response.json();
+      setCarros(dados);
+    }
+    getCarros();
   }
- 
-  return res.json()
-}
-
-
-export default async function Home() {
-  const carros = await getCarros();
 
   return (
-      // <Pesquisa />
-    <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 xl:gap-6">
+    <>
+      <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
+        <div className="flex justify-end px-0">
+          <Pesquisa
+            filtrarCarros={filtrarCarros} />
+        </div>
 
-        {carros.map((carro: CarroType) => (
-          <Carro key={carro.id} carro={carro}></Carro>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 xl:gap-6">
+          {carros.map((carro) => (
+            <Carro key={carro.id} carro={carro} />
+          ))}
+        </div>
+
       </div>
-      
-    </div>
+    </>
   )
 }
