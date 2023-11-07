@@ -6,3 +6,9 @@ export const formatPrice = (price: number | null) => {
     currency: "BRL",
   }).format(price/100);
 }
+
+export const formatKilometers = (kilometers: number | null) => {
+  if (!kilometers) return "0 km";
+
+  return new Intl.NumberFormat("pt-BR").format(kilometers) + " km";
+}

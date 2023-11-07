@@ -15,9 +15,14 @@ const config = {
         'primary-gray': '#2D2D37',
         'carro-card': '#F7F7F7',
       },
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
 
 module.exports = config;
