@@ -1,8 +1,7 @@
 import { CalendarDays, Gauge } from "lucide-react";
 import { CarroType } from "../types/CarroType";
 import CarroImage from "./CarroImage";
-import { formatPrice } from "../lib/utils";
-import { formatKilometers } from "../lib/utils";
+import { formatPrice, formatKilometers } from "../lib/utils";
 
 type CarroProps = {
   carro: CarroType;
