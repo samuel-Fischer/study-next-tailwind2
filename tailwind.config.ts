@@ -7,8 +7,8 @@ const config = {
   theme: {
     extend: {
       backgroundImage: {
-        // 'car_logo': "url('./img/logo.png')", // Caminho relativo da raiz
-        // 'car_home': "url('./img/home.png')", // Caminho relativo da raiz
+        'car_logo': "url('./img/logo.png')",
+        'car_home': "url('../img/home.png')",
       },
       colors: {
         'primary-red': '#F3133C',

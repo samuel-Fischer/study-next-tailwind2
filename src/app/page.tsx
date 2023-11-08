@@ -3,6 +3,7 @@ import { CarroType } from "../types/CarroType";
 import Pesquisa from "../components/Pesquisa";
 import Carro from "../components/Carro";
 import { useEffect, useState } from "react";
+import { SectionHero } from "../components/SectionHero";
 
 export default function Home() {
   const [carros, setCarros] = useState<{ carro: CarroType }[]>([]);
@@ -29,7 +30,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0">
+      <SectionHero />
+      <div className="max-w-7xl mx-auto pt-8 px-8 xl:px-0 mb-20">
         <div className="flex justify-end px-0">
           <Pesquisa
             filtrarCarros={filtrarCarros} />
