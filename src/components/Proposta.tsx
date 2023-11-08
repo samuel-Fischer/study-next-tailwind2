@@ -36,8 +36,8 @@ export default function Proposta({ propostas }: PropostaProps) {
                         {proposta.nome}
                       </a>
                     </p>
-                    <time dateTime={proposta.data} className="text-gray-500">
-                      {formatDate(proposta.data)}
+                    <time dateTime={proposta.date} className="text-gray-500">
+                      {formatDate(proposta.date)}
                     </time>
                   </div>
                   <p className="text-gray-600">{formatPrice(proposta.lance)}</p>
