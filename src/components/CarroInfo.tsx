@@ -1,7 +1,6 @@
 import { CalendarDays, Gauge } from "lucide-react";
 import { CarroType } from "../types/CarroType";
 import CarroImage from "./CarroImage";
-import { PropostaType } from "../types/PropostaType";
 import { formatKilometers, formatPrice } from "../lib/utils";
 
 const reviews = {
@@ -14,6 +13,10 @@ type CarroProps = {
 };
 
 export default function CarroInfo({ carro }: CarroProps) {
+  if (!carro) {
+    return <div>Carregando...</div>;
+  }
+  
   return (
     <div className="bg-white">
       <div className="pt-6">

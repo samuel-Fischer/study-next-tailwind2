@@ -4,11 +4,8 @@ import Pesquisa from "../components/Pesquisa";
 import Carro from "../components/Carro";
 import { useEffect, useState } from "react";
 
-
-
 export default function Home() {
   const [carros, setCarros] = useState<{ carro: CarroType }[]>([]);
-
 
   useEffect(() => {
     async function getCarros() {
@@ -18,7 +15,6 @@ export default function Home() {
     }
     getCarros();
   }, []);
-
 
   function filtrarCarros(data: any) {
     async function getCarros() {

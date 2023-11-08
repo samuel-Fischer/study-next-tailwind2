@@ -4,7 +4,7 @@ export const formatPrice = (price: number | null) => {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(price/100);
+  }).format(price);
 }
 
 export const formatKilometers = (kilometers: number | null) => {
@@ -12,3 +12,10 @@ export const formatKilometers = (kilometers: number | null) => {
 
   return new Intl.NumberFormat("pt-BR").format(kilometers) + " km";
 }
+
+export const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const options = { year: "numeric", month: "short", day: "numeric" } as Intl.DateTimeFormatOptions;
+  
+  return date.toLocaleDateString("pt-BR", options);
+};
