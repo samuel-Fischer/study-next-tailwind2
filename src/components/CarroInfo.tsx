@@ -13,11 +13,6 @@ type CarroProps = {
   carro: CarroType;
 };
 
-type PropostaProps = {
-  proposta: PropostaType;
-};
-
-
 export default function CarroInfo({ carro }: CarroProps) {
   return (
     <div className="bg-white">

@@ -1,97 +1,110 @@
-import { useState } from 'react'
-import { CalendarDays, Gauge } from "lucide-react";
-
-const reviews = {
-  quantity: 117,
-  href: '#',
-}
-
-const product = {
-  name: 'Basic Tee 6-Pack',
-  price: 'R$ 10.192,00',
-  quilometragem: '100.000 Km',
-  ano: '2019',
-  images: [
-    {
-      src: 'https://i.ytimg.com/vi/PQ1eRQMeBkY/maxresdefault.jpg',
-      alt: 'Model wearing plain black basic tee.',
+const posts = [
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+    category: { title: 'Marketing', href: '#' },
+    author: {
+      name: 'Michael Foster',
+      role: 'Co-Founder / CTO',
+      href: '#',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-}
-
+  },
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+    category: { title: 'Marketing', href: '#' },
+    author: {
+      name: 'Michael Foster',
+      role: 'Co-Founder / CTO',
+      href: '#',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+    category: { title: 'Marketing', href: '#' },
+    author: {
+      name: 'Michael Foster',
+      role: 'Co-Founder / CTO',
+      href: '#',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    description:
+      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+    date: 'Mar 16, 2020',
+    datetime: '2020-03-16',
+    category: { title: 'Marketing', href: '#' },
+    author: {
+      name: 'Michael Foster',
+      role: 'Co-Founder / CTO',
+      href: '#',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    },
+  },
+  // More posts...
+]
 
 export default function Example() {
-
   return (
-    <div className="bg-white">
-      <div className="pt-6">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-1 lg:gap-x-8 lg:px-8">
-          <div className="lg:flex">
-            <div className="lg:w-1/3">
-              <div className="aspect-h-3 aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                <img
-                  src={product.images[0].src}
-                  alt={product.images[0].alt}
-                  className="h-full w-full object-cover object-center"
-                />
+    <div className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Propostas</h2>
+          <p className="mt-2 text-lg leading-8 text-gray-600">
+            Estas são as propostas feitas para este veiculo.
+          </p>
+        </div>
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          {posts.map((post) => (
+            <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
+              <div className="group relative">
+                <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{post.description}</p>
               </div>
-            </div>
-            <div className="lg:w-2/3 lg:pl-8">
-              <div>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:pb-2">
-                  {product.name}
-                </h1>
-                {/* Description */}
-                <div className="lg:border-b lg:border-gray-200 lg:pb-3">
-                  <h3 className="sr-only">Description</h3>
-                  <div className="space-y-6">
-                    <p className="text-base text-gray-900">{product.description}</p>
+              <div className="relative mx-auto w-full mt-8 flex items-center gap-x-4">
+                <img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-50" />
+                <div className="text-sm w-full leading-6">
+                  <div className="flex justify-between">
+                    <p className="font-semibold text-gray-900">
+                      <a href={post.author.href}>
+                        <span className="absolute inset-0" />
+                        {post.author.name}
+                      </a>
+                    </p>
+                    <time dateTime={post.datetime} className="text-gray-500">
+                      {post.date}
+                    </time>
                   </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex justify-between mb-6">
-                    <div>
-                      <h2 className="sr-only">Product information</h2>
-                      <p className="text-3xl tracking-tight text-primary-red">{product.price}</p>
-                    </div>
-                    <div className="flex items-center">
-                      <div className="flex items-center">
-                        <a href={reviews.href} className="text-sm font-medium ml-3 text-indigo-500 hover:text-indigo-600">{reviews.quantity} Reviews</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="block">
-                    <div>
-                      <p>Data</p>
-                      <div className="flex items-center mb-4">
-                        <CalendarDays className="mr-1" />
-                        <p>{product.ano}/{+product.ano + 1}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Quilometragem</p>
-                      <div className="flex items-center">
-                        <Gauge className="mr-1" />
-                        <p>{product.quilometragem}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className='pb-10'>
-                  <button
-                    type="submit"
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-primary-red px-8 py-3 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                  >
-                    Fazer oferta
-                  </button>
+                  <p className="text-gray-600">{post.author.role}</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </div>

@@ -4,4 +4,6 @@ export type PropostaType = {
   lance: number,
   carroId: number,
   clienteId: number,
+  datetime: string,
+  texto: string,
 };

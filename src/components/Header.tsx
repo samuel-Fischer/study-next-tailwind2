@@ -50,15 +50,15 @@ export function Header() {
         </div>
       </header>
       <div className="absolute top-6 right-5">
-        <li className="flex items-center gap-2 px-5 relative float-right">
-          {clienteNome ? clienteNome : "Identifique-se"}
+        <Link href="/" className="flex items-center gap-2 px-5 relative float-right font-bold text-primary-gray text-2xl">
+          {clienteNome ? clienteNome : "Entrar"}
           {
             clienteNome ?
-              <i className="ms-2 fs-4 bi bi-person-fill-down" style={{ cursor: 'pointer' }} onClick={logout}><LogOut /></i> :
+              <LogOut onClick={logout}/> :
               <Link href="/logar" className="text-primary-gray"><UserCircle2 /></Link>
           }
 
-        </li>
+        </Link>
       </div>
     </div>
   );
