@@ -15,10 +15,10 @@ const reviews = {
 
 type CarroProps = {
   carro: CarroType;
-  propostas: PropostaType;
+  proposta: PropostaType;
 };
 
-export default function CarroInfo({ carro, propostas }: CarroProps) {
+export default function CarroInfo({ carro, proposta }: CarroProps) {
   const { clienteNome, clienteId } = useContext(ClienteContext); // Adicionando clienteId
 
   const [isModalVisible, setIsModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
@@ -86,20 +86,27 @@ export default function CarroInfo({ carro, propostas }: CarroProps) {
                 {clienteNome && (
                   <div className="pb-10">
                     <button
-                      type="submit"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-primary-red px-8 py-3 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                      onClick={handleFazerOfertaClick}
-                    >
-                      Fazer oferta
-                    </button>
-                    {isModalVisible && (
-                      <Modal
-                        isVisible={isModalVisible}
-                        onClose={() => setIsModalVisible(false)}
-                        clientId={clienteId}
-                        clientName={clienteNome}
-                        carId={carro.id}
-                      />
+      type="submit"
+      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-primary-red px-8 py-3 text-base font-medium text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+      onClick={() => setIsModalVisible(true)} // Chame a função que define a visibilidade do modal como verdadeira
+    >
+      Fazer oferta
+    </button>
+    {isModalVisible && (
+      <Modal
+      isVisible={isModalVisible}
+      onClose={() => setIsModalVisible(false)}
+      clientId={clienteId}
+      nome={clienteNome}
+      carroId={carro.id}
+  
+      date={new Date().toISOString()}
+      
+      foto="https://source.unsplash.com/random"
+
+  
+    />
+      
                     )}
                   </div>
                 )}

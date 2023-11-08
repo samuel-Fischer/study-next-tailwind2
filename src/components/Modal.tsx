@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"; 
 import { useForm } from "react-hook-form";
-import Proposta from "./Proposta";
 
 const API_BASE_URL = "http://localhost:3004";
 
@@ -10,15 +9,14 @@ type Props = {
   clientId: number | null;
   nome: string;
   carroId: number | null;
-  foto : string;
-  lance : number;
-  date :  string;
-  texto : string;
-
+  foto: string;
+  
+  date: string;
+  
 };
 
-export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date, texto, foto }: Props) {
-  const { register, handleSubmit, reset } = useForm();
+export function Modal({ isVisible, onClose, clientId, nome, carroId,  date,  foto }: Props) {
+  const { register, handleSubmit } = useForm();
 
   const [modalVisible, setModalVisible] = useState(isVisible);
 
@@ -29,9 +27,9 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date
         nome: nome,
         carroId: carroId,
         foto: foto,
-        lance: lance,
+      
         date: date,
-        texto: texto,
+        
         ...data,
       };
       const response = await fetch(`${API_BASE_URL}/proposta`, {
@@ -39,7 +37,16 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...proposta, lance: Number(proposta.lance), carroId: Number(proposta.carroId), clientId: Number(proposta.clientId), date: new Date(), nome: proposta.nome, foto: proposta.foto, texto: proposta.texto }),
+        body: JSON.stringify({ 
+          ...proposta, 
+          lance: Number(proposta.lance), 
+          carroId: Number(proposta.carroId), 
+          clientId: Number(proposta.clientId), 
+          date: new Date(proposta.date).toISOString(), 
+          nome: proposta.nome, 
+          foto: proposta.foto, 
+          texto: proposta.texto 
+        }),
       });
       if (response.ok) {
         alert("Proposta salva com sucesso!");
@@ -65,7 +72,7 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      {<div className="w-[600px] flex flex-col">
+      <div className="w-[600px] flex flex-col">
         <button className="text-white text-xl place-self-end" onClick={closeModal}>X</button>
         <div className="bg-white p-2 rounded">
           <div className="col-span-3 flex flex-auto">
@@ -86,7 +93,7 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date
               />
               <input
                 id="texto"
-                type="string"
+                type="text"
                 className="mt-1 w-[100] px-3 py-2 max-lg bg-slate-100 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
                 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500
                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
@@ -106,7 +113,7 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId, lance, date
             </label>
           </div>
         </div>
-      </div>}
+      </div>
     </div>
   );
 }
