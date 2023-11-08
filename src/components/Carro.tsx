@@ -15,19 +15,20 @@ export default function Carro({ carro }: CarroProps) {
       </div>
       <div className="flex justify-between my-3">
         <p className="w-40 truncate font-bold">{carro.marca}</p>
-        <p className="text-md text-primary-red">{formatPrice (carro.preco)}</p>
+        <p className="text-md text-primary-red">{formatPrice(carro.preco)}</p>
       </div>
       <div className="flex justify-between mb-3">
         <p className="flex items-center">
           <CalendarDays className="mr-1" /> {carro.ano}/{+carro.ano + 1}
         </p>
         <p className="flex items-center">
-          <Gauge className="mr-1" />{formatKilometers (carro.quilometragem)}
+          <Gauge className="mr-1" />{formatKilometers(carro.quilometragem)}
         </p>
       </div>
-      <button className="rounded-md bg-primary-red hover:bg-red-600 text-white p-3 py-2.5 text-sm text-center">
+      <a className="rounded-md bg-primary-red hover:bg-red-600 text-white p-3 py-2.5 text-sm text-center"
+        href={`carro/${carro.id}`}>
         Ver Mais
-      </button>
+      </a>
 
     </div>
   )
