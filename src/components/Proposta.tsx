@@ -1,11 +1,14 @@
 import { PropostaType } from "../types/PropostaType";
 import { formatPrice, formatDate } from "../lib/utils";
+import { ClienteContext } from "../contexts/cliente";
+import { useContext } from "react";
 
 type PropostaProps = {
   propostas: PropostaType[];
 };
 
 export default function Proposta({ propostas }: PropostaProps) {
+  const { clienteNome } = useContext(ClienteContext);
   if (!propostas) {
     return <div>Carregando...</div>;
   }
@@ -20,6 +23,7 @@ export default function Proposta({ propostas }: PropostaProps) {
             Para visualizar as propostas feitas para este veiculo certifique-se de estar logado. 
           </p>
         </div>
+        {clienteNome && (
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {propostas.map((proposta) => (
             <article key={proposta.id} className="flex max-w-xl flex-col items-start justify-between">
@@ -46,6 +50,7 @@ export default function Proposta({ propostas }: PropostaProps) {
             </article>
           ))}
         </div>
+        )}
       </div>
     </div>
   );
