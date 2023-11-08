@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getCarros() {
-      const response = await fetch("http://localhost:3004/carros");
+      const response = await fetch("http://localhost:3004/carros?destaque=true");
       const data = await response.json();
       setCarros(data);
     }

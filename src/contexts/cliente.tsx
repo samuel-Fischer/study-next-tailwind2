@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 
 type ClienteContextType = {
   clienteId: number | null;
@@ -9,7 +9,7 @@ type ClienteContextType = {
 };
 
 export const ClienteContext = createContext<ClienteContextType>({
-  clienteId: 0,
+  clienteId: null,
   clienteNome: '',
   mudaId: (id) => {},
   mudaNome: (nome) => {},
@@ -22,6 +22,17 @@ type ClienteProviderProps = {
 function ClienteProvider({ children }: ClienteProviderProps) {
   const [clienteId, setClienteId] = useState<number | null>(null);
   const [clienteNome, setClienteNome] = useState('');
+  const [clienteIsAdmin, setClienteIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const clienteString = localStorage.getItem('cliente_logado');
+    if (clienteString) {
+      const cliente = JSON.parse(clienteString);
+      setClienteId(cliente.id);
+      setClienteNome(cliente.nome);
+      setClienteIsAdmin(cliente.isAdmin);
+    }
+  }, []);
 
   function mudaId(id: number) {
     setClienteId(id);

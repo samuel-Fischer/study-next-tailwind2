@@ -19,11 +19,12 @@ export function Header() {
       mudaId(0)
       mudaNome("")
 
-      localStorage.removeItem("clienteNome")
-      localStorage.removeItem("clienteId")
-      window.location.reload()
+      localStorage.removeItem("cliente_logado");
+      window.location.reload();
 
     }
+
+
 
   }
   return (

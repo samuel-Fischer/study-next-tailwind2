@@ -26,6 +26,7 @@ export default function Example() {
     } else {
       mudaId(cliente[0].id)
       mudaNome(cliente[0].nome)
+      localStorage.setItem("cliente_logado", JSON.stringify({ id: cliente[0].id, nome: cliente[0].nome, isAdmin: cliente[0].isAdmin }))
       router.push('/')
     }
 

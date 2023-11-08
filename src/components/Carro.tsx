@@ -7,8 +7,10 @@ type CarroProps = {
   carro: CarroType;
 };
 
+
 export default function Carro({ carro }: CarroProps) {
   return (
+    
     <div className="flex flex-col shadow-lg h-96 bg-carro-card p-5">
       <div className="relative max-h-64 flex-1">
         <CarroImage carro={carro} fill />
