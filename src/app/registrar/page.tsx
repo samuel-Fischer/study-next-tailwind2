@@ -1,5 +1,34 @@
+'use client'
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+
+type Inputs = {
+  nome: string;
+  email: string;
+  senha: string;
+};
 
 export default function Example() {
+  const { register, handleSubmit, reset } = useForm<Inputs>({});
+
+  async function onSubmit(data: Inputs) {
+    console.log(data);
+    const carros = await fetch("http://localhost:3004/clientes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, nome: String(data.nome), email: String(data.email), senha: String(data.senha) }),
+    });
+    if (carros.status === 201) {
+      alert("Cadastro realizado com sucesso!");
+    } else {
+      alert("Erro ao cadastrar!");
+    }
+  }
+
+  useEffect(() => { }, []);
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -9,25 +38,26 @@ export default function Example() {
           </h2>
         </div>
 
+
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form className="space-y-6" action="#" method="POST">
-          <div>
-            <div className="flex items-center justify-between">
-              <label htmlFor="nome" className="block text-sm font-medium leading-6 text-gray-900">
-                Nome
-              </label>
+          <form className="space-y-6" action="#" method="POST" onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <div className="flex items-center justify-between">
+                <label htmlFor="nome" className="block text-sm font-medium leading-6 text-gray-900">
+                  Nome
+                </label>
+              </div>
+              <div className="mt-2">
+                <input
+                  id="nome"
+                  type="nome"
+                  autoComplete="current-nome"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
+                  {...register("nome", { required: true })}
+                />
+              </div>
             </div>
-            <div className="mt-2">
-              <input
-                id="nome"
-                name="nome"
-                type="nome"
-                autoComplete="current-nome"
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -36,11 +66,11 @@ export default function Example() {
               <div className="mt-2">
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
+                  {...register("email", { required: true })}
                 />
               </div>
             </div>
@@ -54,11 +84,11 @@ export default function Example() {
               <div className="mt-2">
                 <input
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary-red sm:text-sm sm:leading-6"
+                  {...register("senha", { required: true })}
                 />
               </div>
             </div>
@@ -67,7 +97,7 @@ export default function Example() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-primary-red px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-red"
               >
-                Entrar
+                Criar Conta
               </button>
             </div>
           </form>
