@@ -35,10 +35,10 @@ export default function Proposta({ propostas }: PropostaProps) {
                 <div className="text-sm w-full leading-6">
                   <div className="flex justify-between">
                     <p className="font-semibold text-gray-900">
-                      <a>
+                     
                         <span className="absolute inset-0" />
                         {proposta.nome}
-                      </a>
+                      
                     </p>
                     <time dateTime={proposta.date} className="text-gray-500">
                       {formatDate(proposta.date)}

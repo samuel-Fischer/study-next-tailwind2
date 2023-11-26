@@ -1,7 +1,9 @@
+'use client';
 import { CalendarDays, Gauge } from "lucide-react";
 import { CarroType } from "../types/CarroType";
 import CarroImage from "./CarroImage";
 import { formatPrice, formatKilometers } from "../lib/utils";
+import Link from "next/link";
 
 type CarroProps = {
   carro: CarroType;
@@ -21,16 +23,16 @@ export default function Carro({ carro }: CarroProps) {
       </div>
       <div className="flex justify-between mb-3">
         <p className="flex items-center">
-          <CalendarDays className="mr-1" /> {carro.ano}/{+carro.ano + 1}
+          <CalendarDays className="mr-1" /> {carro.ano_id}/{+carro.ano_id + 1}
         </p>
         <p className="flex items-center">
           <Gauge className="mr-1" />{formatKilometers(carro.quilometragem)}
         </p>
       </div>
-      <a className="rounded-md bg-primary-red hover:bg-red-600 text-white p-3 py-2.5 text-sm text-center"
+      <Link className="rounded-md bg-primary-red hover:bg-red-600 text-white p-3 py-2.5 text-sm text-center"
         href={`carro/${carro.id}`}>
         Ver Mais
-      </a>
+      </Link>
 
     </div>
   )

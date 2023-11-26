@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import { CalendarDays, Gauge } from "lucide-react";
 import { CarroType } from "../types/CarroType";
@@ -7,6 +8,7 @@ import { ClienteContext } from "../contexts/cliente";
 import { useContext } from "react";
 import { PropostaType } from "../types/PropostaType";
 import { Modal } from "./Modal";
+import Link from "next/link";
 
 const reviews = {
   quantity: 117,
@@ -61,7 +63,7 @@ export default function CarroInfo({ carro, proposta }: CarroProps) {
                     {clienteNome && (
                       <div className="flex items-center">
                         <div className="flex items-center">
-                          <a href={reviews.href} className="text-sm font-medium ml-3 text-indigo-500 hover:text-indigo-600">{reviews.quantity} Ofertas</a>
+                          <Link href={reviews.href} className="text-sm font-medium ml-3 text-indigo-500 hover:text-indigo-600">{reviews.quantity} Ofertas</Link>
                         </div>
                       </div>
                     )}
@@ -71,7 +73,7 @@ export default function CarroInfo({ carro, proposta }: CarroProps) {
                       <p>Data</p>
                       <div className="flex items-center mb-4">
                         <CalendarDays className="mr-1" />
-                        <p>{carro.ano}/{+carro.ano + 1}</p>
+                        <p>{carro.ano_id}/{+carro.ano_id + 1}</p>
                       </div>
                     </div>
                     <div>

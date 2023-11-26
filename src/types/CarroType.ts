@@ -3,7 +3,7 @@ export type CarroType = {
   marca: string;
   sobre: string;
   imagem: string;
-  ano: string;
+  ano_id: string;
   preco: number;
   quilometragem: number;
 };

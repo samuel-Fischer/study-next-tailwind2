@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 import { useContext } from 'react'
 import { ClienteContext } from '../../contexts/cliente'
 import { useRouter } from 'next/navigation'
-import { Router } from 'lucide-react'
+import Link from 'next/link'
+
 
 export default function Example() {
 
@@ -67,9 +68,9 @@ export default function Example() {
                   Senha
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-primary-red hover:text-red-600">
+                  <Link href="#" className="font-semibold text-primary-red hover:text-red-600">
                     Esqueceu a senha?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">
@@ -95,9 +96,9 @@ export default function Example() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Não possui uma conta?{' '}
-            <a href="/registrar" className="font-semibold leading-6 text-primary-red hover:text-red-600">
+            <Link href="/registrar" className="font-semibold leading-6 text-primary-red hover:text-red-600">
               Crie agora uma conta
-            </a>
+            </Link>
           </p>
         </div>
       </div>

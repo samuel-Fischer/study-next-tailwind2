@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 type Inputs = {
   marca: string;
   quilometragem: number;
-  ano: number;
+  ano_id: number;
   preco: number;
   sobre: string;
   imagem: string;
@@ -33,7 +33,7 @@ export default function Cadastro() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data, preco: Number(data.preco), quilometragem: Number(data.quilometragem)}),
+      body: JSON.stringify({ ...data, preco: Number(data.preco), quilometragem: Number(data.quilometragem), ano_id: Number(data.ano_id)}),
     });
     if (carros.status === 201) {
       alert("Cadastro realizado com sucesso!");
@@ -187,10 +187,11 @@ export default function Cadastro() {
             <select
               className="valid:border-green-500 valid:text-green-600"
               id="ano"
-              {...register("ano", { required: true })}
+              {...register("ano_id", { required: true })}
             >
               {anos.map((ano) => (
-                <option key={ano.id} value={ano.ano}>
+                  console.log(ano.id),
+                <option key={ano.id} value={ano.id}>
                   {ano.ano}
                 </option>
               ))}
