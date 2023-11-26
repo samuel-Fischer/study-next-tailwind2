@@ -14,7 +14,7 @@ export default function Example() {
   useEffect(() => {
     async function getCarro() {
       try {
-        const response = await fetch(`http://localhost:3004/carros/${params.id}`);
+        const response = await fetch(`http://localhost:3004/carro/${params.id}`);
         if (response.ok) {
           const data = await response.json();
           setCarro(data);
@@ -28,7 +28,7 @@ export default function Example() {
 
     async function getPropostas() {
       try {
-        const response = await fetch(`http://localhost:3004/proposta?carroId=${params.id}`);
+        const response = await fetch(`http://localhost:3004/proposta/${params.id}`);
         if (response.ok) {
           const data = await response.json();
           setPropostas(data);
