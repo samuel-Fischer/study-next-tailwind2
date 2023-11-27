@@ -98,17 +98,12 @@ export default function CarroInfo({ carro, proposta }: CarroProps) {
       <Modal
       isVisible={isModalVisible}
       onClose={() => setIsModalVisible(false)}
-      clientId={clienteId}
+      cliente_id={clienteId}
       nome={clienteNome}
-      carroId={carro.id}
-  
+      carro_id={carro.id}
       date={new Date().toISOString()}
-      
       foto="https://source.unsplash.com/random"
-
-  
     />
-      
                     )}
                   </div>
                 )}

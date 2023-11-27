@@ -3,8 +3,8 @@ export type PropostaType = {
   nome: string,
   foto: string,
   lance: number,
-  carroId: number,
-  clienteId: number,
+  carro_id: number,
+  cliente_id: number,
   date: string,
   texto: string,
 };

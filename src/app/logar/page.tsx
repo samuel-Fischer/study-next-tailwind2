@@ -18,7 +18,7 @@ export default function Example() {
    async function VerificarLogin(data: any) {
     const login = `email=${data.email}&password=${data.password}`
     console.log(data)
-    const response = await fetch(`http://localhost:3004/clientes?${login}`)
+    const response = await fetch(`http://localhost:3004/listar?${login}`)
     const cliente = await response.json()
     if (cliente.length == 0) {
       alert("Email ou senha incorretos")

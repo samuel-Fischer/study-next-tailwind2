@@ -23,9 +23,6 @@ export function Header() {
       window.location.reload();
 
     }
-
-
-
   }
   return (
     <div className="relative">

@@ -6,33 +6,26 @@ const API_BASE_URL = "http://localhost:3004";
 type Props = {
   isVisible: boolean;
   onClose: () => void;
-  clientId: number | null;
-  nome: string;
-  carroId: number | null;
-  foto: string;
-  
-  date: string;
-  
+  cliente_id: number | null;
+  carro_id: number | null;
+  lance: number | null;
 };
 
-export function Modal({ isVisible, onClose, clientId, nome, carroId,  date,  foto }: Props) {
+export function Modal({ isVisible, onClose, cliente_id, carro_id}: Props) {
   const { register, handleSubmit } = useForm();
-
+  const [currentDate, setCurrentDate] = useState<string>(new Date().toISOString());
   const [modalVisible, setModalVisible] = useState(isVisible);
 
-  const salvarProposta = async (data: any) => {
+  const salvarProposta = async (dados: any) => {
     try {
       const proposta = {
-        clientId: clientId,
-        nome: nome,
-        carroId: carroId,
-        foto: foto,
-      
-        date: date,
-        
-        ...data,
+        cliente_id: cliente_id,
+        carro_id: carro_id,
+        data: currentDate,
+        ...dados,
       };
-      const response = await fetch(`${API_BASE_URL}/proposta`, {
+      
+      const response = await fetch(`${API_BASE_URL}/propostas`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,11 +33,9 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId,  date,  fot
         body: JSON.stringify({ 
           ...proposta, 
           lance: Number(proposta.lance), 
-          carroId: Number(proposta.carroId), 
-          clientId: Number(proposta.clientId), 
-          date: new Date(proposta.date).toISOString(), 
-          nome: proposta.nome, 
-          foto: proposta.foto, 
+          carro_id: Number(proposta.carro_id), 
+          cliente_id: Number(proposta.cliente_id), 
+          data: new Date(proposta.data).toISOString(),
           texto: proposta.texto 
         }),
       });
@@ -61,6 +52,7 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId,  date,  fot
 
   useEffect(() => {
     setModalVisible(isVisible);
+    setCurrentDate(new Date().toISOString());
   }, [isVisible]);
 
   const closeModal = () => {
@@ -77,7 +69,7 @@ export function Modal({ isVisible, onClose, clientId, nome, carroId,  date,  fot
         <div className="bg-white p-2 rounded">
           <h1 className="text-2xl font-bold text-center text-primary-red">Faça sua proposta</h1>
           <div className="mt-2">
-            <label htmlFor="lance" className="ano">
+            <label htmlFor="lance" className="lance">
               <span className="block font-medium text-slate-700 text-lg">
                 Preço desejado:
               </span>
