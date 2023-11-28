@@ -5,6 +5,7 @@ export type PropostaType = {
   lance: number,
   carro_id: number,
   cliente_id: number,
-  date: string,
+  data: string,
   texto: string,
+  cliente: string,
 };

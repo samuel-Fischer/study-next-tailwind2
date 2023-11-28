@@ -37,11 +37,11 @@ export default function Proposta({ propostas }: PropostaProps) {
                     <p className="font-semibold text-gray-900">
                      
                         <span className="absolute inset-0" />
-                        {proposta.nome}
+                        {proposta.cliente.nome}
                       
                     </p>
-                    <time dateTime={proposta.date} className="text-gray-500">
-                      {formatDate(proposta.date)}
+                    <time dateTime={proposta.data} className="text-gray-500">
+                      {formatDate(proposta.data)}
                     </time>
                   </div>
                   <p className="text-gray-600">{formatPrice(proposta.lance)}</p>
