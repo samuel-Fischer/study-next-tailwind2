@@ -19,7 +19,7 @@ export default function Home() {
   function filtrarCarros(data: any) {
     async function getCarros() {
       const response = await fetch(
-        "http://localhost:3004/carros?marca_like=" + data.pesq
+        "http://localhost:3004/carros/marcas/" + data.pesq
       );
       const dados = await response.json();
       setCarros(dados);
